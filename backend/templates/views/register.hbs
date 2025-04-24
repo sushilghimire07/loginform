@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - MyWebsite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  {{> navbar}}
+
+  <section class="register-section">
+    <div class="register-box">
+      <h2>Register</h2>
+      <form action="/register" method="POST">
+  <div class="input-group">
+    <label for="first-name">First Name</label>
+    <input type="text" name="firstName" id="firstame" required placeholder="Enter your first name">
+  </div>
+  <div class="input-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" name="lastName" id="last-name" required placeholder="Enter your last name">
+  </div>
+  <div class="input-group">
+    <label for="age">Age</label>
+    <input type="number" name="age" id="age" required placeholder="Enter your age">
+  </div>
+  <div class="input-group">
+    <label for="phone">Phone Number</label>
+    <input type="text" name="phone" id="phone" required placeholder="Enter your phone number">
+  </div>
+  <div class="input-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required placeholder="Enter your email">
+  </div>
+  <div class="input-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required placeholder="Create a password">
+  </div>
+  <div class="input-group">
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" name="confirmPassword" id="confirm-password" required placeholder="Confirm your password">
+  </div>
+  <button type="submit" class="btn-primary">Register</button>
+  <p class="redirect">Already have an account? <a href="/login">Login</a></p>
+</form>
+
+    </div>
+  </section>
+
+  {{> footer}}
+
+</body>
+</html>

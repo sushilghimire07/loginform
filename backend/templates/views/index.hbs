@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to MyWebsite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  {{> navbar}}
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Empower Your Login Experience</h1>
+      <p>Modern, fast, and secure login system for your web application.</p>
+      <a href="/login" class="btn-primary">Get Started</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Fast Authentication</h3>
+        <p>Lightning-fast login experience with optimized backend.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Security First</h3>
+        <p>Top-level security with password hashing and validation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Mobile Friendly</h3>
+        <p>Fully responsive design that works seamlessly on all devices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"Super clean and easy to use! Best login page I've implemented."</p>
+        <span>- Alex</span>
+      </div>
+      <div class="testimonial">
+        <p>"Secure and fast. Love how it's designed for both devs and users."</p>
+        <span>- Maya</span>
+      </div>
+    </div>
+  </section>
+
+  {{> footer}}
+
+</body>
+</html>
