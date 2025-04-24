@@ -58,7 +58,7 @@ app.post('/login', async (req, res) => {
 
     const isMatch = await bcrypt.compare(password,useremail.password);
 
-    const token = await userRegister.generateAuthToken();
+    const token = await userRegister.generateAuthToken();//This is imcomplte tommrow change this
 
     if (isMatch) {
       res.status(201).render("index");
