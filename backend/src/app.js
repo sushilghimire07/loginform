@@ -1,4 +1,4 @@
-// src/app.js
+import 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import './db/conn.js';
@@ -6,8 +6,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import hbs from 'hbs';
 import Register from './models/register.js';
-import bcryptjs from 'bcryptjs'
-import bcrypt from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
+import { configDotenv } from 'dotenv';
+
 
 // Handle __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -15,7 +16,9 @@ const __dirname = path.dirname(__filename);
   
 // App setup
 const app = express();
+configDotenv();
 const port = process.env.PORT || 3000;
+
 
 // Paths
 const static_path = path.join(__dirname, '../public');
@@ -26,6 +29,8 @@ const partials_path = path.join(__dirname, '../templates/partials');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(static_path));
+
+
 
 // View engine setup
 app.set('view engine', 'hbs');
@@ -56,9 +61,7 @@ app.post('/login', async (req, res) => {
 
     const useremail = await Register.findOne({ email: email });
 
-    const isMatch = await bcrypt.compare(password,useremail.password);
-
-    const token = await userRegister.generateAuthToken();//This is imcomplte tommrow change this
+    const isMatch = await bcryptjs.compare(password, useremail.password);
 
     if (isMatch) {
       res.status(201).render("index");
@@ -71,7 +74,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
 // Register Form Submission (POST)
 app.post('/register', async (req, res) => {
   try {
@@ -79,18 +81,20 @@ app.post('/register', async (req, res) => {
 
     // Check if passwords match
     if (password === confirmPassword) {
+      const hashedPassword = await bcryptjs.hash(password, 10);
+
       const userRegister = new Register({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         phone: req.body.phone,
         age: req.body.age,
-        password: req.body.password
+        password: hashedPassword 
       });
 
-
+      // Generate token
       const token = await userRegister.generateAuthToken();
-
+      // console.log(token)
 
       // Save new user to database
       await userRegister.save();

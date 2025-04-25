@@ -1,3 +1,4 @@
+import 'dotenv';
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import jwt from 'jsonwebtoken';
@@ -59,7 +60,7 @@ const userSchema = new mongoose.Schema({
   userSchema.methods.generateAuthToken = async function () {
     try {
       
-      const token = jwt.sign({ _id: this._id.toString() }, 'mynameissushilghimire');
+      const token = jwt.sign({ _id: this._id.toString() }, process.env["SECRET_KEY"]);
     
       this.tokens = this.tokens.concat({ token });
   
