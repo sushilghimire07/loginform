@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - 404 Brain Not Found</title>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+   
+
+    .about-page {
+      padding-top: 50px;  
+      margin: 30px auto;
+      max-width: 1000px;
+      padding: 20px;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes gradientBG {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+ /* Heading */
+    .about-page h1 {
+      font-size: 3.5rem;
+      color: #ff4c68;
+      text-shadow: 2px 2px #000;
+      margin-bottom: 30px;
+      animation: float 3s infinite alternate;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Joke cards */
+    .joke {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      margin: 20px auto;
+      padding: 20px 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+      overflow: hidden;
+    }
+
+    .joke:hover {
+      transform: scale(1.03);
+      background: rgba(0, 255, 234, 0.15);
+      box-shadow: 0 0 35px rgba(0, 255, 234, 0.5);
+    }
+
+    .joke::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+      transform: rotate(45deg);
+      animation: shine 3s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0%   { transform: translate(-100%, -100%) rotate(45deg); }
+      100% { transform: translate(100%, 100%) rotate(45deg); }
+    }
+
+    .joke p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin: 8px 0;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .about-page h1 { font-size: 2.5rem; }
+      .joke p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+ {{>navbar}}
+
+  <!-- About Page -->
+  <div class="about-page">
+    <h1>About Us 🤓</h1>
+
+    <!-- 10× Core Jokes -->
+    <div class="joke">
+      <p>💻 Why do programmers prefer dark mode?</p>
+      <p>Because the light attracts bugs. 🐛</p>
+    </div>
+    <div class="joke">
+      <p>🧠 Warning: Low memory... <br>Would you like to close Stack Overflow?</p>
+      <p>No. I’d rather close my career. 😭</p>
+    </div>
+    <div class="joke">
+      <p>🔧 My code doesn’t have bugs—it just develops random features.</p>
+    </div>
+    <div class="joke">
+      <p>🛠️ Debugging: Being the detective in a crime movie where you are also the murderer.</p>
+    </div>
+    <div class="joke">
+      <p>☠️ SQL query walks into a bar, walks up to two tables and asks: “Can I JOIN you?”</p>
+    </div>
+    <div class="joke">
+      <p>🧟‍♂️ If at first you don’t succeed... call it version 1.0.</p>
+    </div>
+    <div class="joke">
+      <p>😵 Tried to solve a bug for 3 hours… Gave up and wrote “Works on my machine.”</p>
+    </div>
+    <div class="joke">
+      <p>🐒 A coder’s spirit animal is a rubber duck—because it listens to all your problems.</p>
+    </div>
+    <div class="joke">
+      <p>📚 Always comment your code—one day you’ll thank yourself (or your grave).</p>
+    </div>
+    <div class="joke">
+      <p>🚀 Remember: In space, no one can hear you semicolon.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  {{>footer}}
+</body>
+</html>

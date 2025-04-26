@@ -8,6 +8,7 @@ import hbs from 'hbs';
 import Register from './models/register.js';
 import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
+import auth from './middleware/auth.js'
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 
 
@@ -43,7 +45,33 @@ hbs.registerPartials(partials_path);
 
 // Routes
 app.get('/', (req, res) => res.render('index'));
+app.get('/about', (req, res) => res.render('about'));
 
+app.get('/secret', auth ,(req, res) => {
+
+    res.render("secret", { user: req.user }
+    );
+    // console.log(`This is the cookies we stored :${req.cookies.jwt}`);
+    
+    }) 
+
+app.get("/logout",auth,async(req,res)=>{
+
+
+  try{
+   res.clearCookie("jwt")
+  //  console.log("Logout")
+   await req.user.save();
+   res.render('login')
+
+  }catch(e){
+    res.status(404).send(e);
+
+  }
+
+
+})    
+  
 app.get('/login', (req, res) => res.render('login'));
 
 app.get('/register', (req, res) => res.render('register'));
@@ -97,8 +125,9 @@ app.post('/login', async (req, res) => {
 
     res.cookie("jwt", token, {
          httpOnly: true,
-          expires: new Date(Date.now()+ 3000)
+          expires: new Date(Date.now()+ 30000)
          });
+    // console.log(`This is the cookies we stored :${req.cookies.jwt}`)     
 
     res.status(200).render("index");
   } catch (e) {
